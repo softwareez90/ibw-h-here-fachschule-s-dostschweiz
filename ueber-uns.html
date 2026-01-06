@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Über uns - ibW Höhere Fachschule Südostschweiz</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #2563eb;       /* Modern Royal Blue */
+            --primary-dark: #1e40af;        /* Darker Blue for Hover */
+            --secondary-color: #0f172a;     /* Dark Slate for Footer */
+            --text-color: #334155;          /* Slate Gray for Text */
+            --light-bg: #f8fafc;            /* Light Gray Background */
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            /* Placeholder height to demonstrate sticky nav */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           NAVIGATION STYLES
+           ═══════════════════════════════════════════════════════════════ */
+        .nav {
+            background-color: var(--white);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1002;
+        }
+
+        .nav-logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .nav-logo-sub {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .nav-cta:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            color: var(--white); /* Ensure text stays white */
+        }
+        
+        .nav-cta::after {
+            display: none; /* No underline for button */
+        }
+
+        /* Mobile Menu Toggle (Checkbox Hack for pure CSS) */
+        .menu-toggle {
+            display: none;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1002;
+        }
+
+        .menu-icon span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           FOOTER STYLES
+           ═══════════════════════════════════════════════════════════════ */
+        .footer {
+            background-color: var(--secondary-color);
+            color: #94a3b8; /* Lighter slate for text */
+            padding: 4rem 0 0 0;
+            margin-top: auto; /* Pushes footer to bottom */
+            font-size: 0.95rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem 2rem;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-brand p {
+            margin-bottom: 1.5rem;
+            max-width: 300px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .contact-icon {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           RESPONSIVE DESIGN
+           ═══════════════════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                z-index: 1001;
+            }
+
+            .menu-icon {
+                display: flex;
+            }
+
+            #menu-check:checked ~ .nav-menu {
+                right: 0;
+            }
+
+            /* Hamburger Animation */
+            #menu-check:checked ~ .menu-icon span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 6px);
+            }
+            #menu-check:checked ~ .menu-icon span:nth-child(2) {
+                opacity: 0;
+            }
+            #menu-check:checked ~ .menu-icon span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -6px);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; color: #1f2937; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 4rem 0; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.2s; }
+    .btn-primary { background: var(--primary, #2563eb); color: white; }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="index.html" class="nav-logo">
+                <div>
+                    <span class="nav-logo-sub">Bildungszentrum</span>
+                    <span class="nav-logo-text">ibW Höhere Fachschule</span>
+                </div>
+            </a>
+
+            <!-- Mobile Menu Checkbox (Hidden) -->
+            <input type="checkbox" id="menu-check" class="menu-toggle">
+            
+            <!-- Hamburger Icon -->
+            <label for="menu-check" class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <!-- Menu Links -->
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Startseite</a></li>
+                <li><a href="ueber-uns.html" class="nav-link">Über uns</a></li>
+                <li><a href="leistungen.html" class="nav-link">Leistungen</a></li>
+                <li><a href="impressum.html" class="nav-link">Impressum</a></li>
+                <!-- CTA Button -->
+                <li><a href="kontakt.html" class="nav-cta">Kontakt aufnehmen</a></li>
+            </ul>
+        </div>
+    </nav>
+  
+  <main>
+    <div class="hero" style="background: linear-gradient(135deg, #004d7a 0%, #0087ca 100%); color: white; padding: 80px 0; text-align: center;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <h1 style="font-size: 3rem; margin-bottom: 20px; font-family: sans-serif;">Bildung, die weiterbringt.</h1>
+        <p style="font-size: 1.25rem; max-width: 800px; margin: 0 auto 30px; opacity: 0.9; line-height: 1.6;">
+            Die ibW Höhere Fachschule Südostschweiz ist Ihr Partner für berufsbegleitende Weiterbildung. 
+            Wir verbinden Theorie mit Praxis an Standorten in Chur, Sargans, Maienfeld, Ziegelbrücke und Zürich.
+        </p>
+        <a href="#angebot" class="btn" style="display: inline-block; background-color: #fff; color: #004d7a; padding: 12px 30px; text-decoration: none; font-weight: bold; border-radius: 4px; transition: all 0.3s;">Unser Gesamtangebot entdecken</a>
+    </div>
+</div>
+
+<section class="section about-intro" style="padding: 80px 0; background-color: #f9f9f9; font-family: sans-serif; color: #333;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div class="grid-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
+            <div class="content-col">
+                <h2 style="color: #004d7a; margin-bottom: 25px; font-size: 2rem;">Wer wir sind</h2>
+                <p style="margin-bottom: 20px; line-height: 1.6;">
+                    Die ibW ist eine der grössten Höheren Fachschulen der Schweiz und bietet über <strong>100 anerkannte, berufsbegleitende Lehrgänge</strong> in rund 30 Berufsrichtungen an. Dazu kommen gegen 200 Fachkurse und Seminare, in denen sich Interessierte – oder auch Firmen und Teams – in kompakter und massgeschneiderter Form weiterentwickeln können.
+                </p>
+                <p style="margin-bottom: 20px; line-height: 1.6;">
+                    Weiterbildung ist in der heutigen Zeit wichtiger denn je. Nur wer sich laufend und gezielt weiterentwickelt, hält und steigert seinen Wert auf dem Arbeitsmarkt. Wir legen höchsten Wert auf eine praxisnahe Ausbildung, die sicherstellt, dass unsere Studierenden das erworbene Wissen 1:1 in die Praxis umsetzen können.
+                </p>
+                <ul style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px;">
+                    <li style="background: #eef2f5; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; color: #555;">Chur</li>
+                    <li style="background: #eef2f5; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; color: #555;">Sargans</li>
+                    <li style="background: #eef2f5; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; color: #555;">Maienfeld</li>
+                    <li style="background: #eef2f5; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; color: #555;">Ziegelbrücke</li>
+                    <li style="background: #eef2f5; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; color: #555;">Zürich</li>
+                    <li style="background: #eef2f5; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; color: #555;">Samedan</li>
+                </ul>
+            </div>
+            <div class="image-col" style="background-color: #ddd; height: 400px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background-image: url('https://via.placeholder.com/600x400?text=Campus+ibW'); background-size: cover;">
+                <!-- Platzhalter für ein Campus-Bild -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section expertise" id="angebot" style="padding: 80px 0; font-family: sans-serif;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+            <h2 style="color: #004d7a; font-size: 2rem; margin-bottom: 15px;">Unsere Kompetenzbereiche</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #666; line-height: 1.6;">
+                In der Teilschule Wirtschaft und Technik bietet die ibW Höhere Fachschule Südostschweiz das breiteste Portfolio aller berufsbegleitenden Weiterbildungsinstitute in der Region.
+            </p>
+        </div>
+
+        <div class="cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            
+            <!-- Card 1: Wirtschaft & Verwaltung -->
+            <div class="card" style="border: 1px solid #eee; border-radius: 8px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;">
+                <h3 style="color: #004d7a; margin-bottom: 15px;">Administration & Verwaltung</h3>
+                <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
+                    Die Wirtschaft und die öffentliche Verwaltung stehen vor neuen Herausforderungen. Neue Technologien und Prozesse fordern Flexibilität. Wir bieten Weiterbildungen, um die Zukunft aktiv zu gestalten und stets auf dem neusten Stand zu sein.
+                </p>
+                <a href="#" style="color: #0087ca; text-decoration: none; font-weight: bold;">Mehr erfahren &rarr;</a>
+            </div>
+
+            <!-- Card 2: Human Resources -->
+            <div class="card" style="border: 1px solid #eee; border-radius: 8px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;">
+                <h3 style="color: #004d7a; margin-bottom: 15px;">Human Resources</h3>
+                <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
+                    Der Mensch als Kapital: Mit der zunehmenden Digitalisierung werden Soft Skills immer wichtiger. Machen Sie sich fit für Ihre Zukunft in den Human Resources – vom Sachbearbeiter Personalwesen bis zum HR-Fachmann mit eidg. Fachausweis.
+                </p>
+                <a href="#" style="color: #0087ca; text-decoration: none; font-weight: bold;">Mehr erfahren &rarr;</a>
+            </div>
+
+            <!-- Card 3: Banking & Finance -->
+            <div class="card" style="border: 1px solid #eee; border-radius: 8px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;">
+                <h3 style="color: #004d7a; margin-bottom: 15px;">Banking & Finance</h3>
+                <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
+                    In Zusammenarbeit mit unserer Partnerschule HWSGR bilden wir Finanzberater/-innen IAF und Finanzplaner/-innen mit eidg. Fachausweis aus. Modularisierung und sauber abgestimmte Schnittstellen bieten grösstmögliche Flexibilität.
+                </p>
+                <a href="#" style="color: #0087ca; text-decoration: none; font-weight: bold;">Mehr erfahren &rarr;</a>
+            </div>
+
+            <!-- Card 4: Immobilien -->
+            <div class="card" style="border: 1px solid #eee; border-radius: 8px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;">
+                <h3 style="color: #004d7a; margin-bottom: 15px;">Immobilien</h3>
+                <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
+                    Unsere erfahrenen Dozierenden sind Spezialisten und selbst aktiv im Fachgebiet tätig. Dank der Fokussierung auf praxisrelevante Themen sind unsere Absolventen in der Immobilien-Bewirtschaftung sehr gefragte Fachleute.
+                </p>
+                <a href="#" style="color: #0087ca; text-decoration: none; font-weight: bold;">Mehr erfahren &rarr;</a>
+            </div>
+
+            <!-- Card 5: Logistik -->
+            <div class="card" style="border: 1px solid #eee; border-radius: 8px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;">
+                <h3 style="color: #004d7a; margin-bottom: 15px;">Logistik</h3>
+                <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
+                    Entdecken Sie die faszinierende Welt von Beschaffung, Produktion, Lagerung, Distribution und Entsorgung. Wir begleiten Sie auf dem Weg zum Teamleiter Logistik oder zum Logistikfachmann mit eidg. Fachausweis.
+                </p>
+                <a href="#" style="color: #0087ca; text-decoration: none; font-weight: bold;">Mehr erfahren &rarr;</a>
+            </div>
+
+            <!-- Card 6: Holz, Bau & Energie -->
+            <div class="card" style="border: 1px solid #eee; border-radius: 8px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;">
+                <h3 style="color: #004d7a; margin-bottom: 15px;">Holz, Bau & Energie</h3>
+                <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
+                    Starten Sie Ihre Ausbildungs-Offensive im Energie-Bereich. Wir bieten spezialisierte Weiterbildungen sowie Skills in Projekt- und Prozessmanagement, die für moderne Kader in technischen Berufen unverzichtbar sind.
+                </p>
+                <a href="#" style="color: #0087ca; text-decoration: none; font-weight: bold;">Mehr erfahren &rarr;</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section cta-banner" style="background-color: #004d7a; color: white; padding: 60px 0; text-align: center; font-family: sans-serif;">
+    <div class="container" style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+        <h2 style="margin-bottom: 20px; font-size: 2rem;">Haben Sie Fragen zu Ihrer Karriereplanung?</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9;">
+            Gerne beraten wir Sie kostenlos und unverbindlich über Ihre individuellen Weiterbildungsmöglichkeiten. Kontaktieren Sie uns oder besuchen Sie einen unserer Infoabende.
+        </p>
+        <div class="btn-group" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <a href="#" class="btn" style="background-color: #fff; color: #004d7a; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 4px; transition: background 0.3s;">Beratungsgespräch vereinbaren</a>
+            <a href="#" class="btn" style="background-color: transparent; border: 2px solid #fff; color: #fff; padding: 13px 28px; text-decoration: none; font-weight: bold; border-radius: 4px; transition: background 0.3s;">Infoabende ansehen</a>
+        </div>
+    </div>
+</section>
+  </main>
+  
+  <footer class="footer">
+        <div class="footer-container">
+            <!-- Column 1: Brand Info -->
+            <div class="footer-column footer-brand">
+                <h3>ibW Höhere Fachschule</h3>
+                <p>
+                    Ihr Kompetenzzentrum für berufliche Weiterbildung in der Südostschweiz. Praxisnah, persönlich und professionell.
+                </p>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-column">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="ueber-uns.html">Über uns</a></li>
+                    <li><a href="leistungen.html">Leistungen</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Contact (Strict) -->
+            <div class="footer-column">
+                <h3>Kontakt</h3>
+                <div class="contact-item">
+                    <span class="contact-icon">✉</span>
+                    <a href="mailto:info@ibw.ch" style="color: white; text-decoration: none; font-weight: 500;">info@ibw.ch</a>
+                </div>
+                <p style="font-size: 0.85rem; margin-top: 1rem; color: #64748b;">
+                    Für Anfragen stehen wir Ihnen gerne per E-Mail zur Verfügung.
+                </p>
+            </div>
+        </div>
+
+        <!-- Copyright Bar -->
+        <div class="footer-bottom">
+            &copy; 2026 ibW Höhere Fachschule Südostschweiz. Alle Rechte vorbehalten.
+        </div>
+    </footer>
+</body>
+</html>

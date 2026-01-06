@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum - ibW Höhere Fachschule Südostschweiz</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #2563eb;       /* Modern Royal Blue */
+            --primary-dark: #1e40af;        /* Darker Blue for Hover */
+            --secondary-color: #0f172a;     /* Dark Slate for Footer */
+            --text-color: #334155;          /* Slate Gray for Text */
+            --light-bg: #f8fafc;            /* Light Gray Background */
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            /* Placeholder height to demonstrate sticky nav */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           NAVIGATION STYLES
+           ═══════════════════════════════════════════════════════════════ */
+        .nav {
+            background-color: var(--white);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1002;
+        }
+
+        .nav-logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .nav-logo-sub {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .nav-cta:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            color: var(--white); /* Ensure text stays white */
+        }
+        
+        .nav-cta::after {
+            display: none; /* No underline for button */
+        }
+
+        /* Mobile Menu Toggle (Checkbox Hack for pure CSS) */
+        .menu-toggle {
+            display: none;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1002;
+        }
+
+        .menu-icon span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           FOOTER STYLES
+           ═══════════════════════════════════════════════════════════════ */
+        .footer {
+            background-color: var(--secondary-color);
+            color: #94a3b8; /* Lighter slate for text */
+            padding: 4rem 0 0 0;
+            margin-top: auto; /* Pushes footer to bottom */
+            font-size: 0.95rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem 2rem;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-brand p {
+            margin-bottom: 1.5rem;
+            max-width: 300px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .contact-icon {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           RESPONSIVE DESIGN
+           ═══════════════════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                z-index: 1001;
+            }
+
+            .menu-icon {
+                display: flex;
+            }
+
+            #menu-check:checked ~ .nav-menu {
+                right: 0;
+            }
+
+            /* Hamburger Animation */
+            #menu-check:checked ~ .menu-icon span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 6px);
+            }
+            #menu-check:checked ~ .menu-icon span:nth-child(2) {
+                opacity: 0;
+            }
+            #menu-check:checked ~ .menu-icon span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -6px);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; color: #1f2937; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 4rem 0; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.2s; }
+    .btn-primary { background: var(--primary, #2563eb); color: white; }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="index.html" class="nav-logo">
+                <div>
+                    <span class="nav-logo-sub">Bildungszentrum</span>
+                    <span class="nav-logo-text">ibW Höhere Fachschule</span>
+                </div>
+            </a>
+
+            <!-- Mobile Menu Checkbox (Hidden) -->
+            <input type="checkbox" id="menu-check" class="menu-toggle">
+            
+            <!-- Hamburger Icon -->
+            <label for="menu-check" class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <!-- Menu Links -->
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Startseite</a></li>
+                <li><a href="ueber-uns.html" class="nav-link">Über uns</a></li>
+                <li><a href="leistungen.html" class="nav-link">Leistungen</a></li>
+                <li><a href="impressum.html" class="nav-link">Impressum</a></li>
+                <!-- CTA Button -->
+                <li><a href="kontakt.html" class="nav-cta">Kontakt aufnehmen</a></li>
+            </ul>
+        </div>
+    </nav>
+  
+  <main>
+    <div class="hero" style="background-color: #eef2f5; padding: 80px 0; border-bottom: 4px solid #d32f2f;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <h1 style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333; font-size: 3rem; margin-bottom: 20px;">Impressum</h1>
+        <p style="font-size: 1.25rem; color: #555; max-width: 800px; line-height: 1.6;">
+            Rechtliche Hinweise und Verantwortlichkeiten für den Webauftritt der ibW Höhere Fachschule Südostschweiz – Ihrem Partner für berufsbegleitende Weiterbildung.
+        </p>
+    </div>
+</div>
+
+<section class="section contact-info" style="padding: 60px 0;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div class="card" style="background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h2 style="color: #d32f2f; margin-top: 0; margin-bottom: 25px; font-size: 1.8rem;">Kontaktadresse</h2>
+            <div style="font-size: 1.1rem; line-height: 1.8; color: #333;">
+                <p style="margin-bottom: 15px;">
+                    <strong>ibW Höhere Fachschule Südostschweiz</strong><br>
+                </p>
+                <p style="margin-bottom: 0;">
+                    <span style="display: inline-block; min-width: 80px; font-weight: bold;">E-Mail:</span> 
+                    <a href="mailto:info@ibw.ch" style="color: #d32f2f; text-decoration: none; border-bottom: 1px solid #d32f2f;">info@ibw.ch</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section legal-content" style="padding: 60px 0; background-color: #f9f9f9;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+            
+            <div class="content-block">
+                <h3 style="color: #333; font-size: 1.5rem; margin-bottom: 20px;">Haftungsausschluss für Inhalte</h3>
+                <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
+                    Die ibW Höhere Fachschule Südostschweiz übernimmt keinerlei Gewähr hinsichtlich der inhaltlichen Richtigkeit, Genauigkeit, Aktualität, Zuverlässigkeit und Vollständigkeit der Informationen. Dies gilt insbesondere für die Angaben zu unserem Gesamtangebot von über 100 anerkannten Lehrgängen sowie den rund 200 Fachkursen und Seminaren in den Bereichen Wirtschaft, Technik, Informatik und weiteren Fachrichtungen.
+                </p>
+                <p style="color: #666; line-height: 1.6;">
+                    Haftungsansprüche gegen die ibW wegen Schäden materieller oder immaterieller Art, welche aus dem Zugriff oder der Nutzung bzw. Nichtnutzung der veröffentlichten Informationen – beispielsweise zu den Studiengängen im Bereich Banking, Human Resources oder Immobilien – entstanden sind, werden ausgeschlossen. Alle Angebote sind unverbindlich.
+                </p>
+            </div>
+
+            <div class="content-block">
+                <h3 style="color: #333; font-size: 1.5rem; margin-bottom: 20px;">Urheberrechte</h3>
+                <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
+                    Die Urheber- und alle anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien auf der Website gehören ausschliesslich der <strong>ibW Höhere Fachschule Südostschweiz</strong> oder den speziell genannten Rechtsinhabern. Dies umfasst insbesondere die Lehrmittelbeschreibungen und Modulpläne der Fachbereiche Administration, Logistik sowie der kaufmännischen Bildungsgänge.
+                </p>
+                <p style="color: #666; line-height: 1.6;">
+                    Für die Reproduktion jeglicher Elemente ist die schriftliche Zustimmung der Urheberrechtsträger im Voraus einzuholen. Dies gilt auch für Inhalte, die in Zusammenarbeit mit Partnerschulen wie der HWSGR erstellt wurden.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section about-context" style="padding: 60px 0; border-top: 1px solid #e0e0e0;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <h3 style="color: #333; font-size: 1.5rem; margin-bottom: 20px;">Unternehmenszweck & Bildungsauftrag</h3>
+        <p style="color: #666; line-height: 1.6; max-width: 900px;">
+            Als eine der grössten Höheren Fachschulen der Schweiz hat sich die ibW Höhere Fachschule Südostschweiz zum Ziel gesetzt, Fach- und Führungskräfte praxisnah auszubilden. Unser Portfolio umfasst diverse Standorte in der Südostschweiz. Wir legen höchsten Wert auf eine praxisnahe Ausbildung, die sicherstellt, dass unsere Studierenden das erworbene Wissen direkt im beruflichen Alltag umsetzen können. Dozierende sind Spezialistinnen und Spezialisten, die aktiv in ihrem Fachgebiet tätig sind.
+        </p>
+    </div>
+</section>
+  </main>
+  
+  <footer class="footer">
+        <div class="footer-container">
+            <!-- Column 1: Brand Info -->
+            <div class="footer-column footer-brand">
+                <h3>ibW Höhere Fachschule</h3>
+                <p>
+                    Ihr Kompetenzzentrum für berufliche Weiterbildung in der Südostschweiz. Praxisnah, persönlich und professionell.
+                </p>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-column">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="ueber-uns.html">Über uns</a></li>
+                    <li><a href="leistungen.html">Leistungen</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Contact (Strict) -->
+            <div class="footer-column">
+                <h3>Kontakt</h3>
+                <div class="contact-item">
+                    <span class="contact-icon">✉</span>
+                    <a href="mailto:info@ibw.ch" style="color: white; text-decoration: none; font-weight: 500;">info@ibw.ch</a>
+                </div>
+                <p style="font-size: 0.85rem; margin-top: 1rem; color: #64748b;">
+                    Für Anfragen stehen wir Ihnen gerne per E-Mail zur Verfügung.
+                </p>
+            </div>
+        </div>
+
+        <!-- Copyright Bar -->
+        <div class="footer-bottom">
+            &copy; 2026 ibW Höhere Fachschule Südostschweiz. Alle Rechte vorbehalten.
+        </div>
+    </footer>
+</body>
+</html>

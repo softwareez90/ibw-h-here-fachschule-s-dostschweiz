@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leistungen - ibW Höhere Fachschule Südostschweiz</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #2563eb;       /* Modern Royal Blue */
+            --primary-dark: #1e40af;        /* Darker Blue for Hover */
+            --secondary-color: #0f172a;     /* Dark Slate for Footer */
+            --text-color: #334155;          /* Slate Gray for Text */
+            --light-bg: #f8fafc;            /* Light Gray Background */
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            /* Placeholder height to demonstrate sticky nav */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           NAVIGATION STYLES
+           ═══════════════════════════════════════════════════════════════ */
+        .nav {
+            background-color: var(--white);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1002;
+        }
+
+        .nav-logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .nav-logo-sub {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .nav-cta:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            color: var(--white); /* Ensure text stays white */
+        }
+        
+        .nav-cta::after {
+            display: none; /* No underline for button */
+        }
+
+        /* Mobile Menu Toggle (Checkbox Hack for pure CSS) */
+        .menu-toggle {
+            display: none;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1002;
+        }
+
+        .menu-icon span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           FOOTER STYLES
+           ═══════════════════════════════════════════════════════════════ */
+        .footer {
+            background-color: var(--secondary-color);
+            color: #94a3b8; /* Lighter slate for text */
+            padding: 4rem 0 0 0;
+            margin-top: auto; /* Pushes footer to bottom */
+            font-size: 0.95rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem 2rem;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-brand p {
+            margin-bottom: 1.5rem;
+            max-width: 300px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .contact-icon {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           RESPONSIVE DESIGN
+           ═══════════════════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                z-index: 1001;
+            }
+
+            .menu-icon {
+                display: flex;
+            }
+
+            #menu-check:checked ~ .nav-menu {
+                right: 0;
+            }
+
+            /* Hamburger Animation */
+            #menu-check:checked ~ .menu-icon span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 6px);
+            }
+            #menu-check:checked ~ .menu-icon span:nth-child(2) {
+                opacity: 0;
+            }
+            #menu-check:checked ~ .menu-icon span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -6px);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; color: #1f2937; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 4rem 0; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.2s; }
+    .btn-primary { background: var(--primary, #2563eb); color: white; }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="index.html" class="nav-logo">
+                <div>
+                    <span class="nav-logo-sub">Bildungszentrum</span>
+                    <span class="nav-logo-text">ibW Höhere Fachschule</span>
+                </div>
+            </a>
+
+            <!-- Mobile Menu Checkbox (Hidden) -->
+            <input type="checkbox" id="menu-check" class="menu-toggle">
+            
+            <!-- Hamburger Icon -->
+            <label for="menu-check" class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <!-- Menu Links -->
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Startseite</a></li>
+                <li><a href="ueber-uns.html" class="nav-link">Über uns</a></li>
+                <li><a href="leistungen.html" class="nav-link">Leistungen</a></li>
+                <li><a href="impressum.html" class="nav-link">Impressum</a></li>
+                <!-- CTA Button -->
+                <li><a href="kontakt.html" class="nav-cta">Kontakt aufnehmen</a></li>
+            </ul>
+        </div>
+    </nav>
+  
+  <main>
+    <div class="hero" style="background: linear-gradient(135deg, #b31b1b 0%, #2c3e50 100%); color: white; padding: 4rem 1rem; text-align: center; position: relative; overflow: hidden;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+        <h1 style="font-size: 3rem; margin-bottom: 1rem; font-weight: 700; line-height: 1.2;">Bildung ist Ihre Zukunft</h1>
+        <p style="font-size: 1.25rem; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; opacity: 0.9;">
+            Die ibW Höhere Fachschule Südostschweiz bietet über 100 anerkannte Lehrgänge und 200 Fachkurse. 
+            Steigern Sie Ihren Marktwert mit praxisnaher Weiterbildung.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="#" class="btn" style="background-color: white; color: #b31b1b; padding: 0.75rem 1.5rem; text-decoration: none; font-weight: bold; border-radius: 4px; transition: transform 0.2s;">Gesamtangebot durchsuchen</a>
+            <a href="#" class="btn" style="background-color: transparent; border: 2px solid white; color: white; padding: 0.75rem 1.5rem; text-decoration: none; font-weight: bold; border-radius: 4px;">Beratungsgespräch vereinbaren</a>
+        </div>
+    </div>
+</div>
+
+<section class="section container" style="padding: 4rem 1rem; max-width: 1200px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 3rem;">
+        <h2 style="font-size: 2.25rem; color: #333; margin-bottom: 1rem;">Ihr Partner für berufsbegleitende Weiterbildung</h2>
+        <p style="font-size: 1.1rem; color: #666; max-width: 900px; margin: 0 auto; line-height: 1.6;">
+            Die ibW ist eine der grössten Höheren Fachschulen der Schweiz. Wir bieten Bildungsmöglichkeiten in rund 30 Berufsrichtungen an. 
+            Ob für Einzelpersonen, Firmen oder Teams – bei uns finden Sie kompakte und massgeschneiderte Entwicklungsmöglichkeiten an Standorten wie Chur, Sargans, Maienfeld und Zürich.
+        </p>
+    </div>
+
+    <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        
+        <!-- Card 1: Wirtschaft General -->
+        <article class="card" style="background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column; height: 100%;">
+            <div style="background-color: #f8f9fa; padding: 1.5rem; border-bottom: 3px solid #b31b1b;">
+                <h3 style="margin: 0; color: #2c3e50; font-size: 1.5rem;">Wirtschaft & Management</h3>
+            </div>
+            <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                <p style="color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Weiterbildung ist in der heutigen Zeit wichtiger denn je. In der Teilschule Wirtschaft bietet die ibW das breiteste Portfolio aller berufsbegleitenden Weiterbildungsinstitute in der Region.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; color: #444;">
+                    <li style="margin-bottom: 0.5rem;">✓ Skills in Projekt- & Prozessmanagement</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Nachdiplomstudien für Kader</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Höheres Wirtschaftsdiplom (HWD)</li>
+                </ul>
+                <a href="#" class="btn" style="margin-top: auto; color: #b31b1b; text-decoration: none; font-weight: 600;">Mehr erfahren &rarr;</a>
+            </div>
+        </article>
+
+        <!-- Card 2: Administration & Verwaltung -->
+        <article class="card" style="background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column; height: 100%;">
+            <div style="background-color: #f8f9fa; padding: 1.5rem; border-bottom: 3px solid #b31b1b;">
+                <h3 style="margin: 0; color: #2c3e50; font-size: 1.5rem;">Administration & Verwaltung</h3>
+            </div>
+            <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                <p style="color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Neue Technologien und Kundenbedürfnisse fordern Flexibilität. Wir bieten Weiterbildungen für Berufsleute in der öffentlichen Verwaltung und Administration, um die Zukunft aktiv zu gestalten.
+                </p>
+                <a href="#" class="btn" style="margin-top: auto; color: #b31b1b; text-decoration: none; font-weight: 600;">Zu den Lehrgängen &rarr;</a>
+            </div>
+        </article>
+
+        <!-- Card 3: Banking & Finance -->
+        <article class="card" style="background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column; height: 100%;">
+            <div style="background-color: #f8f9fa; padding: 1.5rem; border-bottom: 3px solid #b31b1b;">
+                <h3 style="margin: 0; color: #2c3e50; font-size: 1.5rem;">Banking & Finance</h3>
+            </div>
+            <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                <p style="color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
+                    In Zusammenarbeit mit der HWSGR bieten wir modulare Ausbildungen mit grösstmöglicher Flexibilität. Starten Sie Ihre Karriere in der Finanzwelt mit anerkannten Abschlüssen.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; color: #444;">
+                    <li style="margin-bottom: 0.5rem;">✓ Dipl. Finanzberater/-in IAF</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Finanzplaner/-in mit eidg. FA</li>
+                </ul>
+                <a href="#" class="btn" style="margin-top: auto; color: #b31b1b; text-decoration: none; font-weight: 600;">Details ansehen &rarr;</a>
+            </div>
+        </article>
+
+        <!-- Card 4: Betriebswirtschaft -->
+        <article class="card" style="background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column; height: 100%;">
+            <div style="background-color: #f8f9fa; padding: 1.5rem; border-bottom: 3px solid #b31b1b;">
+                <h3 style="margin: 0; color: #2c3e50; font-size: 1.5rem;">Betriebswirtschaft</h3>
+            </div>
+            <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                <p style="color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Verstehen Sie, wie der Motor unserer Wirtschaft funktioniert. Erfahren Sie, was es braucht, um in einem stark umworbenen Markt als Unternehmen erfolgreich zu sein und nachhaltig Höchstleistungen zu erbringen.
+                </p>
+                <a href="#" class="btn" style="margin-top: auto; color: #b31b1b; text-decoration: none; font-weight: 600;">Kompetenzen stärken &rarr;</a>
+            </div>
+        </article>
+
+        <!-- Card 5: Human Resources -->
+        <article class="card" style="background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column; height: 100%;">
+            <div style="background-color: #f8f9fa; padding: 1.5rem; border-bottom: 3px solid #b31b1b;">
+                <h3 style="margin: 0; color: #2c3e50; font-size: 1.5rem;">Human Resources</h3>
+            </div>
+            <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                <p style="color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Der Mensch als Kapital: Mit zunehmender Digitalisierung werden Soft Skills unverzichtbar. Machen Sie sich fit für eine Zukunft im Personalwesen.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; color: #444;">
+                    <li style="margin-bottom: 0.5rem;">✓ HR-Fachleute mit eidg. FA</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Payroll Manager/-in</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Sachbearbeiter/-in Personalwesen</li>
+                </ul>
+                <a href="#" class="btn" style="margin-top: auto; color: #b31b1b; text-decoration: none; font-weight: 600;">HR Angebote &rarr;</a>
+            </div>
+        </article>
+
+        <!-- Card 6: Immobilien -->
+        <article class="card" style="background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column; height: 100%;">
+            <div style="background-color: #f8f9fa; padding: 1.5rem; border-bottom: 3px solid #b31b1b;">
+                <h3 style="margin: 0; color: #2c3e50; font-size: 1.5rem;">Immobilien</h3>
+            </div>
+            <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                <p style="color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Wir legen höchsten Wert auf eine praxisnahe Ausbildung. Unsere Dozierenden sind aktive Spezialist/-innen. Das Wissen kann 1:1 in die Praxis umgesetzt werden.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; color: #444;">
+                    <li style="margin-bottom: 0.5rem;">✓ Sachbearbeiter/-in Immobilien-Bewirtschaftung</li>
+                </ul>
+                <a href="#" class="btn" style="margin-top: auto; color: #b31b1b; text-decoration: none; font-weight: 600;">Zur Immobilien-Schule &rarr;</a>
+            </div>
+        </article>
+
+        <!-- Card 7: Kaufmännische Bildung -->
+        <article class="card" style="background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column; height: 100%;">
+            <div style="background-color: #f8f9fa; padding: 1.5rem; border-bottom: 3px solid #b31b1b;">
+                <h3 style="margin: 0; color: #2c3e50; font-size: 1.5rem;">Kaufmännische Bildung</h3>
+            </div>
+            <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                <p style="color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Eine Bildungsinvestition in sich selbst. Egal ob in der Administration oder an der Schnittstelle zur Produktion – erhöhen Sie Ihren Marktwert.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; color: #444;">
+                    <li style="margin-bottom: 0.5rem;">✓ Technische Kaufleute mit eidg. FA</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Handelsschule kv edupool</li>
+                    <li style="margin-bottom: 0.5rem;">✓ KMU Lehrgang für Geschäftsleute</li>
+                </ul>
+                <a href="#" class="btn" style="margin-top: auto; color: #b31b1b; text-decoration: none; font-weight: 600;">Alle Lehrgänge &rarr;</a>
+            </div>
+        </article>
+
+        <!-- Card 8: Logistik -->
+        <article class="card" style="background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column; height: 100%;">
+            <div style="background-color: #f8f9fa; padding: 1.5rem; border-bottom: 3px solid #b31b1b;">
+                <h3 style="margin: 0; color: #2c3e50; font-size: 1.5rem;">Logistik</h3>
+            </div>
+            <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                <p style="color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Entdecken Sie die faszinierende Welt von Beschaffung, Produktion, Lagerung, Distribution und Entsorgung. Ideal für Teamleiter und Fachkräfte.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; color: #444;">
+                    <li style="margin-bottom: 0.5rem;">✓ Logistikfachleute mit eidg. FA</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Teamleiter/-in Logistik</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Fachkurse Logistik</li>
+                </ul>
+                <a href="#" class="btn" style="margin-top: auto; color: #b31b1b; text-decoration: none; font-weight: 600;">Zur Logistik &rarr;</a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="section" style="background-color: #f2f2f2; padding: 4rem 1rem; margin-top: 2rem;">
+    <div class="container" style="max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem;">
+        <div style="flex: 1 1 400px;">
+            <h2 style="font-size: 2rem; color: #333; margin-bottom: 1rem;">Noch Fragen zum Angebot?</h2>
+            <p style="font-size: 1.1rem; color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
+                Gerne beraten wir Sie kostenlos und unverbindlich zu Ihren individuellen Weiterbildungsmöglichkeiten.
+                Melden Sie sich für einen unserer Infoabende an oder vereinbaren Sie direkt einen Termin.
+            </p>
+            <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #b31b1b;">
+                <strong style="display: block; font-size: 1.1rem; color: #333;">Michael Meier</strong>
+                <span style="display: block; color: #666; margin-bottom: 0.5rem;">Schulleiter Wirtschaft</span>
+                <a href="tel:0814033325" style="color: #b31b1b; text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.25rem;">081 403 33 25</a>
+                <a href="mailto:michael.meier@ibw.ch" style="color: #b31b1b; text-decoration: none;">michael.meier@ibw.ch</a>
+            </div>
+        </div>
+        <div style="flex: 1 1 300px; text-align: center;">
+             <div style="background: #2c3e50; color: white; padding: 2rem; border-radius: 8px;">
+                <h3 style="margin-top: 0;">Nächste Schritte</h3>
+                <ul style="list-style: none; padding: 0; text-align: left; margin: 1.5rem 0;">
+                    <li style="margin-bottom: 1rem; display: flex; align-items: center;">
+                        <span style="background: #b31b1b; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px; font-size: 0.8rem;">&rsaquo;</span> 
+                        Broschüre bestellen
+                    </li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: center;">
+                        <span style="background: #b31b1b; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px; font-size: 0.8rem;">&rsaquo;</span> 
+                        Infoabend besuchen
+                    </li>
+                    <li style="margin-bottom: 0; display: flex; align-items: center;">
+                        <span style="background: #b31b1b; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px; font-size: 0.8rem;">&rsaquo;</span> 
+                        Beratungstermin buchen
+                    </li>
+                </ul>
+                <a href="#" class="btn" style="background-color: #b31b1b; color: white; padding: 0.75rem 1.5rem; text-decoration: none; font-weight: bold; border-radius: 4px; display: block;">Jetzt Kontakt aufnehmen</a>
+             </div>
+        </div>
+    </div>
+</section>
+
+<section class="section container" style="padding: 4rem 1rem; max-width: 1200px; margin: 0 auto; text-align: center;">
+    <h3 style="font-size: 1.75rem; color: #333; margin-bottom: 2rem;">Weitere Fachbereiche entdecken</h3>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <span class="btn" style="border: 1px solid #ddd; padding: 0.5rem 1rem; border-radius: 20px; color: #555; background: #fff;">Holz, Bau & Energie</span>
+        <span class="btn" style="border: 1px solid #ddd; padding: 0.5rem 1rem; border-radius: 20px; color: #555; background: #fff;">Schule für Gestaltung</span>
+        <span class="btn" style="border: 1px solid #ddd; padding: 0.5rem 1rem; border-radius: 20px; color: #555; background: #fff;">Wald & Holz</span>
+        <span class="btn" style="border: 1px solid #ddd; padding: 0.5rem 1rem; border-radius: 20px; color: #555; background: #fff;">Technik & Informatik</span>
+    </div>
+</section>
+  </main>
+  
+  <footer class="footer">
+        <div class="footer-container">
+            <!-- Column 1: Brand Info -->
+            <div class="footer-column footer-brand">
+                <h3>ibW Höhere Fachschule</h3>
+                <p>
+                    Ihr Kompetenzzentrum für berufliche Weiterbildung in der Südostschweiz. Praxisnah, persönlich und professionell.
+                </p>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-column">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="ueber-uns.html">Über uns</a></li>
+                    <li><a href="leistungen.html">Leistungen</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Contact (Strict) -->
+            <div class="footer-column">
+                <h3>Kontakt</h3>
+                <div class="contact-item">
+                    <span class="contact-icon">✉</span>
+                    <a href="mailto:info@ibw.ch" style="color: white; text-decoration: none; font-weight: 500;">info@ibw.ch</a>
+                </div>
+                <p style="font-size: 0.85rem; margin-top: 1rem; color: #64748b;">
+                    Für Anfragen stehen wir Ihnen gerne per E-Mail zur Verfügung.
+                </p>
+            </div>
+        </div>
+
+        <!-- Copyright Bar -->
+        <div class="footer-bottom">
+            &copy; 2026 ibW Höhere Fachschule Südostschweiz. Alle Rechte vorbehalten.
+        </div>
+    </footer>
+</body>
+</html>
